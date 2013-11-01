@@ -1,0 +1,2 @@
+INDEX VERSION 1.126+C:\Users\Steve\workspace\FYP-Android\android-patterns\.metadata\.plugins\org.eclipse.jdt.core
+3076411793.index
