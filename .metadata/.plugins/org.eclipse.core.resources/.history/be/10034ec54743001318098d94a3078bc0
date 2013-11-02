@@ -1,0 +1,15 @@
+package com.example.pattern.repository;
+
+import android.content.Context;
+
+public class Repository {
+	
+	private Context context;
+	private CommentsDataAccessObject datasource;
+	
+	public Repository(Context context) {
+	    this.context = context;
+	}
+	
+	
+}

@@ -1,0 +1,12 @@
+package com.example.pattern.repository;
+
+import android.content.Context;
+
+public class Repository {
+	
+	private Context context;
+	
+	public Repository(Context context) {
+	    this.context = context;
+	  }
+}
