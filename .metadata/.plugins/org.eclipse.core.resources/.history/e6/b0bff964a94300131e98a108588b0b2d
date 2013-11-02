@@ -1,0 +1,46 @@
+package com.example.pattern.proxyCache;
+
+import java.util.List;
+import java.util.Random;
+
+import com.example.pattern.repository.R;
+
+import android.app.ListActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+
+public class MainActivity extends ListActivity {
+  
+  //private CommentsDataAccessObject datasource;
+  private LongRunningComputation repository;
+  
+  @Override
+  public void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+
+  }
+
+  // Will be called via the onClick attribute
+  // of the buttons in main.xml
+  public void cpuCompute(View view) {
+
+  }
+
+  @Override
+  protected void onResume() {
+	repository.open();
+    //datasource.open();
+    super.onResume();
+  }
+
+  @Override
+  protected void onPause() {
+	 repository.close();
+    //datasource.close();
+    super.onPause();
+  }
+
+} 

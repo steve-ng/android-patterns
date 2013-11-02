@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <RelativeLayout
+            android:layout_width="313dp"
+            android:layout_height="145dp" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:text="nQueen algo"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/numQueens"
+                android:layout_alignBottom="@+id/numQueens"
+                android:layout_alignParentLeft="true"
+                android:text="numQueen"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <EditText
+                android:id="@+id/numQueens"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:ems="10" />
+
+            <TextView
+                android:id="@+id/TextView01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/numQueens"
+                android:layout_marginTop="18dp"
+                android:text="numLoop"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <EditText
+                android:id="@+id/numLoop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/TextView01"
+                android:layout_alignBottom="@+id/TextView01"
+                android:layout_alignParentRight="true"
+                android:ems="10" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/localBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="localCompute"
+        android:text="Local computation" />
+
+    <Button
+        android:id="@+id/remoteBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="cloudCompute"
+        android:text="Server computation" />
+
+    <TextView
+        android:id="@+id/localTaken"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Local time taken:"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/remoteTaken"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remote time taken:"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</LinearLayout>
