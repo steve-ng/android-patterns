@@ -1,0 +1,135 @@
+package com.example.pattern.proxyCache;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.HttpConnectionParams;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.SQLException;
+import android.database.sqlite.SQLiteDatabase;
+
+public class CommentsDataAccessObject implements IComment {
+
+  // Database fields
+  private SQLiteDatabase database;
+  private MySQLiteHelper dbHelper;
+  private String[] allColumns = { MySQLiteHelper.COLUMN_ID,
+      MySQLiteHelper.COLUMN_COMMENT };
+
+  public CommentsDataAccessObject(Context context) {
+    dbHelper = new MySQLiteHelper(context);
+  }
+
+  public void open() throws SQLException {
+    database = dbHelper.getWritableDatabase();
+  }
+
+  public void close() {
+    dbHelper.close();
+  }
+
+  public Comment createComment(String comment) {
+    ContentValues values = new ContentValues();
+    
+    values.put(MySQLiteHelper.COLUMN_COMMENT, comment);
+    long insertId = database.insert(MySQLiteHelper.TABLE_COMMENTS, null,
+        values);
+    
+    Cursor cursor = database.query(MySQLiteHelper.TABLE_COMMENTS,
+        allColumns, MySQLiteHelper.COLUMN_ID + " = " + insertId, null,
+        null, null, null);
+    cursor.moveToFirst();
+    Comment newComment = cursorToComment(cursor);
+    cursor.close();
+    
+    //update restAPI too
+    updateRemoteDatabase(newComment);
+    
+    return newComment;
+  }
+  
+  private void updateRemoteDatabase(Comment commentToPost ){
+	  try {
+	  	//http setup
+		HttpClient client = new DefaultHttpClient();
+		HttpConnectionParams.setConnectionTimeout(client.getParams(), 1000000);
+		HttpResponse response;
+		HttpPost post = new HttpPost("http://localhost:3000/comment");
+		
+		//json obj creation
+		JSONObject json = new JSONObject();
+		json.put("comment", commentToPost);
+		
+		
+		//setting up post information
+		StringEntity se = new StringEntity(json.toString());
+		post.setEntity(se);
+		post.setHeader("Accept", "application/json");
+		post.setHeader("Content-type", "application/json");
+		
+		//execute request
+		response = client.execute(post);
+		
+		if(response.getStatusLine().getStatusCode() == 200)
+		
+	  } catch (Exception e) {
+			//exception handling
+	  }
+  }
+
+  
+  public void deleteComment(Comment comment) {
+    long id = comment.getId();
+    System.out.println("Comment deleted with id: " + id);
+    database.delete(MySQLiteHelper.TABLE_COMMENTS, MySQLiteHelper.COLUMN_ID
+        + " = " + id, null);
+  }
+
+  public Comment getComment(long commentId){
+	  Cursor cursor = database.query(MySQLiteHelper.TABLE_COMMENTS,
+		        allColumns, MySQLiteHelper.COLUMN_ID + " = " + commentId, null, null, null, null);
+	  
+	    if (!(cursor.moveToFirst()) || cursor.getCount() ==0){
+	    	System.out.println("curosr is empty!");
+	    }
+
+	    Comment commentToReturn = cursorToComment(cursor);
+
+	  cursor.moveToFirst();
+	  cursor.close();
+	  return commentToReturn;
+  }
+  
+  public List<Comment> getAllComments() {
+    List<Comment> comments = new ArrayList<Comment>();
+
+    Cursor cursor = database.query(MySQLiteHelper.TABLE_COMMENTS,
+        allColumns, null, null, null, null, null);
+
+    cursor.moveToFirst();
+    while (!cursor.isAfterLast()) {
+      Comment comment = cursorToComment(cursor);
+      comments.add(comment);
+      cursor.moveToNext();
+    }
+    // make sure to close the cursor
+    cursor.close();
+    return comments;
+  }
+
+  private Comment cursorToComment(Cursor cursor) {
+    Comment comment = new Comment();
+    comment.setId(cursor.getLong(0));
+    comment.setComment(cursor.getString(1));
+    return comment;
+  }
+} 

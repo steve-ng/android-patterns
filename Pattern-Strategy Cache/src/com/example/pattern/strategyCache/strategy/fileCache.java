@@ -19,6 +19,4 @@ public class fileCache implements CacheStrategy {
 		//algorithm to get from file
 		return null;
 	}
-
-
 }
