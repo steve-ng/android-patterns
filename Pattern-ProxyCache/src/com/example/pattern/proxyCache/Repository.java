@@ -1,7 +1,6 @@
 package com.example.pattern.proxyCache;
 
 import java.util.List;
-
 import android.content.Context;
 
 public class Repository {

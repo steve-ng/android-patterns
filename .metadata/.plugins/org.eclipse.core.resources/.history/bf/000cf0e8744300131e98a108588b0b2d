@@ -1,0 +1,23 @@
+package com.example.pattern.strategyCache;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class inMemoryCache implements CacheStrategy {
+	
+
+	private Map commentInMemoryCache = new HashMap<Long,Comment>();
+	
+	@Override
+	public void storeComment(Comment comment) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Comment getComment(long commentId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

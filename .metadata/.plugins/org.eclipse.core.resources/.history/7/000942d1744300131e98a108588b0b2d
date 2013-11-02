@@ -1,0 +1,8 @@
+package com.example.pattern.strategyCache;
+
+public interface CacheStrategy {
+
+	public void storeComment(Comment comment);
+	public Comment getComment(long commentId);
+	
+}

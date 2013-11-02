@@ -1,0 +1,18 @@
+package com.example.pattern.strategyCache;
+
+public class StrategyContext {
+	 
+	private CacheStrategy strategy;
+
+	public StrategyContext(CacheStrategy strategy){
+	      this.strategy = strategy;
+	}
+	
+	public void storeComment(Comment comment){
+		strategy.storeComment(comment);
+	}
+	
+	public Comment getComment(long commentId){
+		strategy.getComment(commentId);
+	}
+}

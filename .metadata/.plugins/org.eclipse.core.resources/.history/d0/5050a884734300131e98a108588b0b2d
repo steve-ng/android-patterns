@@ -1,0 +1,7 @@
+package com.example.pattern.proxyCache;
+
+public interface CacheStrategy {
+
+	
+	
+}

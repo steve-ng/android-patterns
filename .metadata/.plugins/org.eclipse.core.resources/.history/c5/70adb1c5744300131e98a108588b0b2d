@@ -1,0 +1,5 @@
+package com.example.pattern.strategyCache;
+
+public class inMemoryCache implements CacheStrategy {
+
+}

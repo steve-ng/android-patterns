@@ -1,0 +1,37 @@
+package com.example.pattern.strategyCache;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import android.content.Context;
+
+public class CommentCache implements IComment {
+	
+	private CommentsDataAccessObject commentDAO;
+	private Map commentInMemoryCache = new HashMap<Long,Comment>();
+	private CacheStrategy cacheStrategy;
+	
+	public CommentCache(CommentsDataAccessObject commentDAO){
+		this.commentDAO = commentDAO;
+		
+		cacheStrategy = new CacheStrategy (inMemoryCache());
+	}
+	
+	@Override
+	public Comment getComment(long commentId) {
+		//check if exists in cache (in-memory in this example) 
+		Comment commentToRetrieve =(Comment) commentInMemoryCache.get(commentId);
+		
+		//retrieve from data source if it is not in cache
+		if(commentToRetrieve ==null){
+			Comment comment = commentDAO.getComment(commentId);
+			commentInMemoryCache.put(commentId,comment);
+			
+			return comment;
+		}
+		return commentToRetrieve;
+	}
+
+
+}

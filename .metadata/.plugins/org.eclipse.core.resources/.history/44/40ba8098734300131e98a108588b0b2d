@@ -1,0 +1,10 @@
+package com.example.pattern.strategyCache;
+
+public class StrategyContext {
+	 
+	private Strategy strategy;
+
+	   public Context(Strategy strategy){
+	      this.strategy = strategy;
+	   }
+}

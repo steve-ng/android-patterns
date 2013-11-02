@@ -1,0 +1,7 @@
+package com.example.pattern.strategyCache;
+
+public interface CacheStrategy {
+
+	
+	
+}
