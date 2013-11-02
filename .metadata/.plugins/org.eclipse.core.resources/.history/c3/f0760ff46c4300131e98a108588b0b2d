@@ -1,0 +1,19 @@
+package com.example.pattern.proxyCache;
+
+import java.util.List;
+
+public class CommentCache implements IComment {
+
+	@Override
+	public Comment getComment(long commentId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Comment> getAllComments() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,25 @@
+package com.example.pattern.proxyCache;
+
+import java.util.List;
+
+public class CommentCache implements IComment {
+	
+	private CommentsDataAccessObject commentDAO;
+	
+	public CommentCache(Context context){
+		commentDAO = new CommentsDataAccessObject(context);
+	}
+	
+	@Override
+	public Comment getComment(long commentId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Comment> getAllComments() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

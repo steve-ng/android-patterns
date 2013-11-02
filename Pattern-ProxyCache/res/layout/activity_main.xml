@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="145dp" >
+
+            <Button
+                android:id="@+id/add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toLeftOf="@+id/retrieve"
+                android:onClick="onClick"
+                android:text="Add New" />
+
+            <Button
+                android:id="@+id/delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/retrieve"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="24dp"
+                android:onClick="onClick"
+                android:text="Delete First" />
+
+            <Button
+                android:id="@+id/retrieve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/delete"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="14dp"
+                android:onClick="onClick"
+                android:text="Retrieve comment Id" />
+
+            <EditText
+                android:id="@+id/commentId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@+id/retrieve"
+                android:layout_alignBottom="@+id/retrieve"
+                android:layout_alignParentLeft="true"
+                android:layout_alignRight="@+id/add"
+                android:ems="10" >
+
+                <requestFocus />
+            </EditText>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="91dp"
+            android:orientation="vertical" >
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+        </LinearLayout>
+        
+    </LinearLayout>
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="match_parent"
+        android:layout_height="345dp"
+        android:text="@string/hello" />
+
+</LinearLayout> 

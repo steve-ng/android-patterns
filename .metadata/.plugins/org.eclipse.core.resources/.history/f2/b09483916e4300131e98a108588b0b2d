@@ -1,0 +1,30 @@
+package com.example.pattern.proxyCache;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import android.content.Context;
+
+public class CommentCache implements IComment {
+	
+	private CommentsDataAccessObject commentDAO;
+	private Map commentInMemoryCache = new HashMap<Long,Comment>();
+	
+	public CommentCache(Context context){
+		commentDAO = new CommentsDataAccessObject(context);
+	}
+	
+	@Override
+	public Comment getComment(long commentId) {
+		Comment commentToRetrieve =(Comment) commentInMemoryCache.get(commentId);
+		if(commentToRetrieve ==null){
+			Comment comment = commentDAO.getComment(commentId);
+			commentInMemoryCache.put(commentId,comment);
+			return comment;
+		}
+		return commentToRetrieve;
+	}
+
+
+}
