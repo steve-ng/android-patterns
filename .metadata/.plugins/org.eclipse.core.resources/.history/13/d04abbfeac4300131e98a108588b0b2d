@@ -1,0 +1,66 @@
+package com.example.fyp_sensormanager;
+
+import android.content.Context;
+
+import com.example.sensor.BatteryCheck;
+import com.example.sensor.Connectivity;
+
+public class SensorManager {
+
+	Context context;
+	public static final String SEND_FILE_NOW = "send file now";
+	public static final String SEND_FILE_LATER_SLOW_NETWORK = "send file later, slow network";
+	public static final String SEND_FILE_LATER_NO_NETWORK = "send file later, no network";
+	public static final String SEND_FILE_LATER_NO_BATTERY = "send file later, insufficient battery";
+	
+
+	public static final String STREAM_HIGH_QUALITY = "stream high quality";
+	public static final String STREAM_LOW_QUALITY_SLOW_NETWORK = "stream low quality as slow network";
+	public static final String STREAM_LOW_BATTERY = "can stream but low battery";
+	public static final String STREAM_NOT_AVAIL_NO_NETWORK = "no stream as no network ";
+
+	public SensorManager(Context context) {
+		this.context = context;
+	}
+
+	public static String sendBigFile(Context context) {
+
+		// check how's the connectivity
+		if (Connectivity.isConnected(context)) {
+			if (Connectivity.isConnectedWifi(context)) {
+
+			} else {
+				return SEND_FILE_LATER_SLOW_NETWORK;
+			}
+		} else {
+			return SEND_FILE_LATER_NO_NETWORK;
+		}
+
+		if (BatteryCheck.getBatteryLife(context) < 0.1) {
+			return SEND_FILE_LATER_NO_BATTERY;
+		}
+
+		return SEND_FILE_NOW;
+
+	}
+
+	public static String videoStream(Context context) {
+		// check how's the connectivity
+		if (Connectivity.isConnected(context)) {
+			if (Connectivity.isConnectedWifi(context)) {
+
+			} else {
+				return STREAM_LOW_QUALITY_SLOW_NETWORK;
+			}
+		} else {
+			return SEND_FILE_LATER_NO_NETWORK;
+		}
+
+		if (BatteryCheck.getBatteryLife(context) < 0.1) {
+			return STREAM_LOW_BATTERY;
+		}
+
+		return STREAM_HIGH_QUALITY;
+	}
+
+}

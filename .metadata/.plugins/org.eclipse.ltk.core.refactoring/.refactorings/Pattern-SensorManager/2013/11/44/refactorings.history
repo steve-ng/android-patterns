@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.example.sensor.Connectivity&apos; to &apos;ConnectivityChecker&apos;&#x0D;&#x0A;- Original project: &apos;Pattern-SensorManager&apos;&#x0D;&#x0A;- Original element: &apos;com.example.sensor.Connectivity&apos;&#x0D;&#x0A;- Renamed element: &apos;com.example.sensor.ConnectivityChecker&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Connectivity&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;com.example.sensor{Connectivity.java[Connectivity" matchStrategy="1" name="ConnectivityChecker" qualified="false" references="true" similarDeclarations="false" stamp="1383389677375" textual="false" version="1.0"/>
+</session>

@@ -64,9 +64,6 @@ public class LongRunningComputation extends AsyncTask<Integer, Void, String>  {
         return text;
     }
 
-    protected void onPostExecute(String results) {
-
-    }
 
 }
 
